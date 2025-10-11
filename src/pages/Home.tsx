@@ -154,7 +154,120 @@ const Home = (): JSX.Element => {
           </Box>
 
           {/* Dashboard Grid */}
-          <Grid templateColumns="repeat(auto-fit, minmax(300px, 1fr))" gap={6}>
+          <Grid templateColumns="repeat(auto-fit, minmax(280px, 1fr))" gap={6}>
+            <GridItem>
+              <Card>
+                <CardHeader>
+                  <HStack justify="space-between" align="center">
+                    <Heading size="md" color="yellow.500">Desafíos Diarios</Heading>
+                    <Badge colorScheme="yellow" variant="subtle">
+                      2/3
+                    </Badge>
+                  </HStack>
+                </CardHeader>
+                <CardBody>
+                  <VStack spacing={4} align="stretch">
+                    {/* Desafío 1 - Completado */}
+                    <Box p={3} bg="green.50" borderRadius="md" border="1px solid" borderColor="green.200">
+                      <HStack justify="space-between" align="start" mb={2}>
+                        <HStack spacing={2}>
+                          <Text fontSize="lg">🎯</Text>
+                          <Box>
+                            <Text fontWeight="bold" fontSize="sm" color="green.700">
+                              Ganar un partido
+                            </Text>
+                            <Text fontSize="xs" color="green.600">
+                              Completa una victoria
+                            </Text>
+                          </Box>
+                        </HStack>
+                        <Badge colorScheme="green" variant="solid" fontSize="xs">
+                          ✓ Completado
+                        </Badge>
+                      </HStack>
+                      <HStack justify="space-between">
+                        <Text fontSize="xs" color="green.600">
+                          +50 XP
+                        </Text>
+                        <Text fontSize="xs" color="green.600">
+                          +100 puntos
+                        </Text>
+                      </HStack>
+                    </Box>
+
+                    {/* Desafío 2 - Completado */}
+                    <Box p={3} bg="green.50" borderRadius="md" border="1px solid" borderColor="green.200">
+                      <HStack justify="space-between" align="start" mb={2}>
+                        <HStack spacing={2}>
+                          <Text fontSize="lg">⚡</Text>
+                          <Box>
+                            <Text fontWeight="bold" fontSize="sm" color="green.700">
+                              Jugar 2 partidos
+                            </Text>
+                            <Text fontSize="xs" color="green.600">
+                              Participa en 2 partidos
+                            </Text>
+                          </Box>
+                        </HStack>
+                        <Badge colorScheme="green" variant="solid" fontSize="xs">
+                          ✓ Completado
+                        </Badge>
+                      </HStack>
+                      <HStack justify="space-between">
+                        <Text fontSize="xs" color="green.600">
+                          +75 XP
+                        </Text>
+                        <Text fontSize="xs" color="green.600">
+                          +150 puntos
+                        </Text>
+                      </HStack>
+                    </Box>
+
+                    {/* Desafío 3 - En progreso */}
+                    <Box p={3} bg="yellow.50" borderRadius="md" border="1px solid" borderColor="yellow.200">
+                      <HStack justify="space-between" align="start" mb={2}>
+                        <HStack spacing={2}>
+                          <Text fontSize="lg">🏆</Text>
+                          <Box>
+                            <Text fontWeight="bold" fontSize="sm" color="yellow.700">
+                              Racha de 3 victorias
+                            </Text>
+                            <Text fontSize="xs" color="yellow.600">
+                              2/3 victorias consecutivas
+                            </Text>
+                          </Box>
+                        </HStack>
+                        <Badge colorScheme="yellow" variant="outline" fontSize="xs">
+                          En progreso
+                        </Badge>
+                      </HStack>
+                      <HStack justify="space-between">
+                        <Text fontSize="xs" color="yellow.600">
+                          +100 XP
+                        </Text>
+                        <Text fontSize="xs" color="yellow.600">
+                          +200 puntos
+                        </Text>
+                      </HStack>
+                      <Box mt={2}>
+                        <HStack justify="space-between" mb={1}>
+                          <Text fontSize="xs" color="yellow.600">
+                            Progreso
+                          </Text>
+                          <Text fontSize="xs" color="yellow.600">
+                            67%
+                          </Text>
+                        </HStack>
+                        <Box h="4px" bg="yellow.200" borderRadius="full" overflow="hidden">
+                          <Box h="100%" w="67%" bg="yellow.500" borderRadius="full" />
+                        </Box>
+                      </Box>
+                    </Box>
+                  </VStack>
+                </CardBody>
+              </Card>
+            </GridItem>
+
             <GridItem>
               <Card>
                 <CardHeader>
