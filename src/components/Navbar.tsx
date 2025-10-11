@@ -1,8 +1,8 @@
-import { 
-  Box, 
-  HStack, 
-  Button, 
-  Text, 
+import {
+  Box,
+  HStack,
+  Button,
+  Text,
   VStack,
   IconButton,
   Drawer,
@@ -12,7 +12,8 @@ import {
   DrawerContent,
   DrawerCloseButton,
   useDisclosure,
-  useBreakpointValue
+  useBreakpointValue,
+  Image
 } from '@chakra-ui/react'
 import { useAuth } from '../context/AuthContext'
 import { Link, useLocation } from 'react-router-dom'
@@ -119,10 +120,10 @@ const Navbar = (): JSX.Element => {
       <>
         {/* Mobile Navbar */}
         <HStack justify="space-between" w="full" p={4} bg="white" borderRadius="lg" boxShadow="sm">
-          {/* App Name */}
-          <Text fontSize="lg" fontWeight="bold" color="brand.500">
-            Match Padel
-          </Text>
+          {/* App Logo */}
+          <HStack spacing={2}>
+            <Image src="/src/assets/logo.png" alt="Match Padel" h="32px" />
+          </HStack>
 
           {/* Mobile Menu Button */}
           <IconButton
@@ -140,9 +141,9 @@ const Navbar = (): JSX.Element => {
           <DrawerContent>
             <DrawerCloseButton />
             <DrawerHeader borderBottomWidth="1px">
-              <Text color="brand.500" fontWeight="bold">
-                Match Padel
-              </Text>
+              <HStack spacing={2}>
+                <Image src="/src/assets/logo.png" alt="Match Padel" h="24px" />
+              </HStack>
             </DrawerHeader>
             <DrawerBody>
               <MobileMenuContent />
@@ -155,10 +156,10 @@ const Navbar = (): JSX.Element => {
 
   return (
     <HStack justify="space-between" w="full" p={4} bg="white" borderRadius="lg" boxShadow="sm">
-      {/* App Name */}
-      <Text fontSize="lg" fontWeight="bold" color="brand.500">
-        Match Padel
-      </Text>
+      {/* App Logo */}
+      <HStack spacing={2}>
+        <Image src="/src/assets/logo.png" alt="Match Padel" h="32px" />
+      </HStack>
 
       {/* Desktop Menu Items */}
       <HStack spacing={2}>

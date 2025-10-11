@@ -1,4 +1,4 @@
-import { Box, Container, Heading, Text, Button, VStack, HStack } from '@chakra-ui/react'
+import { Box, Container, Heading, Text, Button, VStack, HStack, Image } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 
 const Landing = (): JSX.Element => {
@@ -8,9 +8,12 @@ const Landing = (): JSX.Element => {
         <VStack spacing={8} align="center" minH="80vh" justify="center">
           {/* Hero Section */}
           <VStack spacing={6} textAlign="center">
-            <Heading as="h1" size="4xl" color="brand.500">
-              Match Padel
-            </Heading>
+            <VStack spacing={4}>
+              <Image src="/src/assets/logo.png" alt="Match Padel" h="80px" />
+              <Heading as="h1" size="4xl" color="brand.500">
+                Match Padel
+              </Heading>
+            </VStack>
             <Text fontSize="xl" color="gray.600" maxW="600px">
               Conecta con jugadores de pádel, organiza partidos y mejora tu juego. 
               La plataforma definitiva para amantes del pádel.

@@ -10,7 +10,8 @@ import {
   FormLabel,
   Input,
   FormErrorMessage,
-  Link as ChakraLink
+  Link as ChakraLink,
+  Image
 } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 import { Formik, Form, Field, FieldProps } from 'formik'
@@ -27,9 +28,12 @@ const Register = (): JSX.Element => {
         <VStack spacing={8} minH="80vh" justify="center">
           {/* Header */}
           <VStack spacing={4} textAlign="center">
-            <Heading as="h1" size="2xl" color="brand.500">
-              Crear Cuenta
-            </Heading>
+            <VStack spacing={3}>
+              <Image src="/src/assets/logo.png" alt="Match Padel" h="60px" />
+              <Heading as="h1" size="2xl" color="brand.500">
+                Crear Cuenta
+              </Heading>
+            </VStack>
             <Text color="gray.600">
               Únete a la comunidad de Match Padel
             </Text>

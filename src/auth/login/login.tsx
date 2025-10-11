@@ -11,6 +11,7 @@ import {
   Input,
   FormErrorMessage,
   Link as ChakraLink,
+  Image,
 } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 import { Formik, Form, Field, FieldProps } from 'formik'
@@ -27,9 +28,12 @@ const Login = (): JSX.Element => {
         <VStack spacing={8} minH="80vh" justify="center">
           {/* Header */}
           <VStack spacing={4} textAlign="center">
-            <Heading as="h1" size="2xl" color="brand.500">
-              Iniciar Sesión
-            </Heading>
+            <VStack spacing={3}>
+              <Image src="/src/assets/logo.png" alt="Match Padel" h="60px" />
+              <Heading as="h1" size="2xl" color="brand.500">
+                Iniciar Sesión
+              </Heading>
+            </VStack>
             <Text color="gray.600">
               Accede a tu cuenta de Match Padel
             </Text>
