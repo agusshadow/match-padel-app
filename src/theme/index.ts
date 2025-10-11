@@ -52,14 +52,48 @@ const theme = extendTheme({
     },
   },
   fonts: {
-    heading: 'Inter, system-ui, sans-serif',
-    body: 'Inter, system-ui, sans-serif',
+    heading: '"Arista 2.0", Inter, system-ui, sans-serif',
+    body: '"Arista 2.0", Inter, system-ui, sans-serif',
+  },
+  fontWeights: {
+    light: 300,
+    normal: 400,
+    medium: 500,
+    semibold: 600,
+    bold: 700,
+  },
+  letterSpacings: {
+    tighter: '-0.05em',
+    tight: '-0.025em',
+    normal: '0',
+    wide: '0.025em',
+    wider: '0.05em',
+    widest: '0.1em',
   },
   styles: {
     global: {
       body: {
         bg: 'white',
         color: 'gray.800',
+        letterSpacing: '0.025em', // Aumenta el interletrado globalmente
+      },
+      h1: {
+        letterSpacing: '0.02em',
+      },
+      h2: {
+        letterSpacing: '0.02em',
+      },
+      h3: {
+        letterSpacing: '0.02em',
+      },
+      h4: {
+        letterSpacing: '0.02em',
+      },
+      h5: {
+        letterSpacing: '0.02em',
+      },
+      h6: {
+        letterSpacing: '0.02em',
       },
     },
   },

@@ -107,19 +107,42 @@ const ThemeShowcase = (): JSX.Element => {
           {/* Typography */}
           <Card>
             <CardHeader>
-              <Heading size="md">Tipografía</Heading>
+              <Heading size="md">Tipografía - Arista 2.0</Heading>
             </CardHeader>
             <CardBody>
               <VStack align="start" spacing={4}>
-                <Heading size="4xl" color="brand.500">Heading 4xl</Heading>
-                <Heading size="3xl" color="secondary.500">Heading 3xl</Heading>
-                <Heading size="2xl" color="alternative.500">Heading 2xl</Heading>
-                <Heading size="xl">Heading xl</Heading>
-                <Heading size="lg">Heading lg</Heading>
-                <Heading size="md">Heading md</Heading>
-                <Text fontSize="lg">Texto grande</Text>
-                <Text fontSize="md">Texto mediano</Text>
-                <Text fontSize="sm" color="gray.600">Texto pequeño</Text>
+                <Box>
+                  <Text fontSize="sm" color="gray.600" mb={2}>Headings:</Text>
+                  <Heading size="4xl" color="brand.500">Heading 4xl</Heading>
+                  <Heading size="3xl" color="secondary.500">Heading 3xl</Heading>
+                  <Heading size="2xl" color="alternative.500">Heading 2xl</Heading>
+                  <Heading size="xl">Heading xl</Heading>
+                  <Heading size="lg">Heading lg</Heading>
+                  <Heading size="md">Heading md</Heading>
+                </Box>
+                <Box>
+                  <Text fontSize="sm" color="gray.600" mb={2}>Textos:</Text>
+                  <Text fontSize="lg">Texto grande</Text>
+                  <Text fontSize="md">Texto mediano</Text>
+                  <Text fontSize="sm" color="gray.600">Texto pequeño</Text>
+                </Box>
+                <Box>
+                  <Text fontSize="sm" color="gray.600" mb={2}>Pesos de fuente:</Text>
+                  <Text fontWeight="light" fontSize="lg">Arista 2.0 Light (300)</Text>
+                  <Text fontWeight="normal" fontSize="lg">Arista 2.0 Normal (400)</Text>
+                  <Text fontWeight="medium" fontSize="lg">Arista 2.0 Medium (500)</Text>
+                  <Text fontWeight="semibold" fontSize="lg">Arista 2.0 Semibold (600)</Text>
+                  <Text fontWeight="bold" fontSize="lg">Arista 2.0 Bold (700)</Text>
+                </Box>
+                <Box>
+                  <Text fontSize="sm" color="gray.600" mb={2}>Interletrado (Letter Spacing):</Text>
+                  <Text letterSpacing="tighter" fontSize="lg">Interletrado Tighter (-0.05em)</Text>
+                  <Text letterSpacing="tight" fontSize="lg">Interletrado Tight (-0.025em)</Text>
+                  <Text letterSpacing="normal" fontSize="lg">Interletrado Normal (0)</Text>
+                  <Text letterSpacing="wide" fontSize="lg">Interletrado Wide (0.025em)</Text>
+                  <Text letterSpacing="wider" fontSize="lg">Interletrado Wider (0.05em)</Text>
+                  <Text letterSpacing="widest" fontSize="lg">Interletrado Widest (0.1em)</Text>
+                </Box>
               </VStack>
             </CardBody>
           </Card>
