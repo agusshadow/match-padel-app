@@ -15,30 +15,18 @@ import {
 import { useAuth } from '../context/AuthContext'
 
 const Home = (): JSX.Element => {
-  const { user, logout } = useAuth()
+  const { user } = useAuth()
 
   return (
     <VStack spacing={8} align="stretch">
       {/* Welcome Header */}
       <Box>
-        <HStack justify="space-between" align="start">
-          <Box>
-            <Heading as="h1" size="2xl" color="brand.500" mb={2}>
-              ¡Bienvenido, {user?.name}!
-            </Heading>
-            <Text color="gray.600">
-              Tu dashboard personal para gestionar partidos y conectar con otros jugadores
-            </Text>
-          </Box>
-          <Button 
-            variant="outline" 
-            colorScheme="red" 
-            size="sm"
-            onClick={logout}
-          >
-            Cerrar Sesión
-          </Button>
-        </HStack>
+        <Heading as="h1" size="2xl" color="brand.500" mb={2}>
+          ¡Bienvenido, {user?.name}!
+        </Heading>
+        <Text color="gray.600">
+          Tu dashboard personal para gestionar partidos y conectar con otros jugadores
+        </Text>
       </Box>
 
           {/* Quick Actions */}
