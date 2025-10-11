@@ -15,7 +15,7 @@ export const useSubmit = () => {
   ) => {
     try {
       const response = await authService.login(values)
-      login(response.token, response.user)
+      login(response.data.token, response.data.user)
       showSuccess('¡Bienvenido!', 'Has iniciado sesión correctamente')
       navigate('/home')
     } catch (error: any) {

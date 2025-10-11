@@ -1,11 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react'
 import { useToast } from '../shared/hooks/useToast'
-
-interface User {
-  id: string
-  email: string
-  name: string
-}
+import { User } from '../services/authService'
 
 interface AuthContextType {
   user: User | null

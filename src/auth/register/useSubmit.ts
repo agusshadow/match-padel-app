@@ -15,7 +15,7 @@ export const useSubmit = () => {
   ) => {
     try {
       const response = await authService.register(values)
-      login(response.token, response.user)
+      login(response.data.token, response.data.user)
       showSuccess('¡Cuenta creada!', 'Te has registrado correctamente')
       navigate('/home')
     } catch (error: any) {

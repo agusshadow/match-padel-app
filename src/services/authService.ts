@@ -50,12 +50,21 @@ export interface RegisterData {
   confirmPassword: string
 }
 
+export interface User {
+  id: number
+  name: string
+  email: string
+  role: string
+  createdAt: string
+  updatedAt: string
+}
+
 export interface AuthResponse {
-  token: string
-  user: {
-    id: string
-    email: string
-    name: string
+  success: boolean
+  message: string
+  data: {
+    user: User
+    token: string
   }
 }
 
@@ -83,7 +92,7 @@ export const authService = {
   },
 
   // Verificar token
-  verifyToken: async (): Promise<{ user: AuthResponse['user'] }> => {
+  verifyToken: async (): Promise<{ user: User }> => {
     const response = await api.get('/auth/verify')
     return response.data
   },
