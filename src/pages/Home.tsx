@@ -12,37 +12,146 @@ import {
   Grid,
   GridItem
 } from '@chakra-ui/react'
-import { useAuth } from '../context/AuthContext'
+// import { useAuth } from '../context/AuthContext' // Comentado porque el header de bienvenida está deshabilitado
 
 const Home = (): JSX.Element => {
-  const { user } = useAuth()
+  // const { user } = useAuth() // Comentado porque el header de bienvenida está deshabilitado
 
   return (
     <VStack spacing={8} align="stretch">
       {/* Welcome Header */}
-      <Box>
+      {/* <Box>
         <Heading as="h1" size="2xl" color="brand.500" mb={2}>
           ¡Bienvenido, {user?.name}!
         </Heading>
         <Text color="gray.600">
           Tu dashboard personal para gestionar partidos y conectar con otros jugadores
         </Text>
-      </Box>
+      </Box> */}
 
-          {/* Quick Actions */}
-          <Card>
-            <CardHeader>
-              <Heading size="md">Acciones Rápidas</Heading>
-            </CardHeader>
-            <CardBody>
-              <HStack spacing={4} wrap="wrap">
-                <Button colorScheme="brand">Crear Partido</Button>
-                <Button variant="secondary">Buscar Jugadores</Button>
-                <Button variant="alternative">Ver Torneos</Button>
-                <Button variant="outline" colorScheme="brand">Mis Estadísticas</Button>
-              </HStack>
-            </CardBody>
-          </Card>
+          {/* Call to Actions */}
+          <Box>
+            <Heading size="lg" color="brand.500" mb={6}>
+              ¿Qué quieres hacer hoy?
+            </Heading>
+            <Grid templateColumns="repeat(auto-fit, minmax(250px, 1fr))" gap={6}>
+              {/* Crear Partido */}
+              <Card 
+                cursor="pointer" 
+                _hover={{ transform: 'translateY(-2px)', boxShadow: 'lg' }}
+                transition="all 0.2s"
+                bg="brand.50"
+                border="2px solid"
+                borderColor="brand.200"
+                h="full"
+                display="flex"
+                flexDirection="column"
+              >
+                <CardBody textAlign="center" py={8} display="flex" flexDirection="column" flex="1">
+                  <Box fontSize="4xl" mb={4}>🏆</Box>
+                  <Heading size="md" color="brand.600" mb={2}>
+                    Crear Partido
+                  </Heading>
+                  <Text fontSize="sm" color="gray.600" mb={4} flex="1">
+                    Organiza un nuevo partido y encuentra jugadores
+                  </Text>
+                  <Button colorScheme="brand" size="lg" w="full" mt="auto">
+                    Crear Ahora
+                  </Button>
+                </CardBody>
+              </Card>
+
+              {/* Unirse a Partido */}
+              <Card 
+                cursor="pointer" 
+                _hover={{ transform: 'translateY(-2px)', boxShadow: 'lg' }}
+                transition="all 0.2s"
+                bg="secondary.50"
+                border="2px solid"
+                borderColor="secondary.200"
+                h="full"
+                display="flex"
+                flexDirection="column"
+              >
+                <CardBody textAlign="center" py={8} display="flex" flexDirection="column" flex="1">
+                  <Box fontSize="4xl" mb={4}>👥</Box>
+                  <Heading size="md" color="secondary.600" mb={2}>
+                    Unirse a Partido
+                  </Heading>
+                  <Text fontSize="sm" color="gray.600" mb={4} flex="1">
+                    Busca partidos disponibles y únete
+                  </Text>
+                  <Button colorScheme="secondary" size="lg" w="full" mt="auto">
+                    Buscar Partidos
+                  </Button>
+                </CardBody>
+              </Card>
+
+              {/* Reservar Cancha */}
+              <Card 
+                cursor="not-allowed"
+                opacity={0.6}
+                bg="gray.50"
+                border="2px solid"
+                borderColor="gray.200"
+                h="full"
+                display="flex"
+                flexDirection="column"
+              >
+                <CardBody textAlign="center" py={8} display="flex" flexDirection="column" flex="1">
+                  <Box fontSize="4xl" mb={4}>🏟️</Box>
+                  <Heading size="md" color="gray.500" mb={2}>
+                    Reservar Cancha
+                  </Heading>
+                  <Text fontSize="sm" color="gray.500" mb={4} flex="1">
+                    Próximamente disponible
+                  </Text>
+                  <Button 
+                    colorScheme="gray" 
+                    size="lg" 
+                    w="full"
+                    isDisabled
+                    variant="outline"
+                    mt="auto"
+                  >
+                    Próximamente
+                  </Button>
+                </CardBody>
+              </Card>
+
+              {/* Unirse a Torneo */}
+              <Card 
+                cursor="not-allowed"
+                opacity={0.6}
+                bg="gray.50"
+                border="2px solid"
+                borderColor="gray.200"
+                h="full"
+                display="flex"
+                flexDirection="column"
+              >
+                <CardBody textAlign="center" py={8} display="flex" flexDirection="column" flex="1">
+                  <Box fontSize="4xl" mb={4}>🏅</Box>
+                  <Heading size="md" color="gray.500" mb={2}>
+                    Unirse a Torneo
+                  </Heading>
+                  <Text fontSize="sm" color="gray.500" mb={4} flex="1">
+                    Próximamente disponible
+                  </Text>
+                  <Button 
+                    colorScheme="gray" 
+                    size="lg" 
+                    w="full"
+                    isDisabled
+                    variant="outline"
+                    mt="auto"
+                  >
+                    Próximamente
+                  </Button>
+                </CardBody>
+              </Card>
+            </Grid>
+          </Box>
 
           {/* Dashboard Grid */}
           <Grid templateColumns="repeat(auto-fit, minmax(300px, 1fr))" gap={6}>
@@ -67,34 +176,6 @@ const Home = (): JSX.Element => {
                       </HStack>
                       <Text fontSize="sm" color="gray.600">Padel Sports</Text>
                     </Box>
-                  </VStack>
-                </CardBody>
-              </Card>
-            </GridItem>
-
-            <GridItem>
-              <Card>
-                <CardHeader>
-                  <Heading size="md" color="secondary.500">Estadísticas</Heading>
-                </CardHeader>
-                <CardBody>
-                  <VStack spacing={4}>
-                    <HStack justify="space-between" w="full">
-                      <Text>Partidos jugados:</Text>
-                      <Text fontWeight="bold" color="brand.500">24</Text>
-                    </HStack>
-                    <HStack justify="space-between" w="full">
-                      <Text>Victorias:</Text>
-                      <Text fontWeight="bold" color="alternative.500">18</Text>
-                    </HStack>
-                    <HStack justify="space-between" w="full">
-                      <Text>Derrotas:</Text>
-                      <Text fontWeight="bold" color="red.500">6</Text>
-                    </HStack>
-                    <HStack justify="space-between" w="full">
-                      <Text>Win Rate:</Text>
-                      <Text fontWeight="bold" color="brand.500">75%</Text>
-                    </HStack>
                   </VStack>
                 </CardBody>
               </Card>
