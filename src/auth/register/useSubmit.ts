@@ -17,7 +17,7 @@ export const useSubmit = () => {
       const response = await authService.register(values)
       login(response.data.token, response.data.user)
       showSuccess('¡Cuenta creada!', 'Te has registrado correctamente')
-      navigate('/home')
+      navigate('/app')
     } catch (error: any) {
       showError('Error al crear la cuenta', error.response?.data?.message || 'No se pudo crear la cuenta')
     } finally {

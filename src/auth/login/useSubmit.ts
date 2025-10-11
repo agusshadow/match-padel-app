@@ -17,7 +17,7 @@ export const useSubmit = () => {
       const response = await authService.login(values)
       login(response.data.token, response.data.user)
       showSuccess('¡Bienvenido!', 'Has iniciado sesión correctamente')
-      navigate('/home')
+      navigate('/app')
     } catch (error: any) {
       showError('Error al iniciar sesión', error.response?.data?.message || 'Credenciales inválidas')
     } finally {

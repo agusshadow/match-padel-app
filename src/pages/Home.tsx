@@ -1,9 +1,8 @@
 import { 
-  Box, 
-  Container, 
+  Box,
+  Button,
   Heading, 
   Text, 
-  Button, 
   VStack, 
   HStack,
   Card,
@@ -19,30 +18,28 @@ const Home = (): JSX.Element => {
   const { user, logout } = useAuth()
 
   return (
-    <Box minH="100vh" bg="gray.50">
-      <Container maxW="container.xl" py={8}>
-        <VStack spacing={8} align="stretch">
-          {/* Header */}
+    <VStack spacing={8} align="stretch">
+      {/* Welcome Header */}
+      <Box>
+        <HStack justify="space-between" align="start">
           <Box>
-            <HStack justify="space-between" align="start">
-              <Box>
-                <Heading as="h1" size="2xl" color="brand.500" mb={2}>
-                  ¡Bienvenido, {user?.name}!
-                </Heading>
-                <Text color="gray.600">
-                  Tu dashboard personal para gestionar partidos y conectar con otros jugadores
-                </Text>
-              </Box>
-              <Button 
-                variant="outline" 
-                colorScheme="red" 
-                size="sm"
-                onClick={logout}
-              >
-                Cerrar Sesión
-              </Button>
-            </HStack>
+            <Heading as="h1" size="2xl" color="brand.500" mb={2}>
+              ¡Bienvenido, {user?.name}!
+            </Heading>
+            <Text color="gray.600">
+              Tu dashboard personal para gestionar partidos y conectar con otros jugadores
+            </Text>
           </Box>
+          <Button 
+            variant="outline" 
+            colorScheme="red" 
+            size="sm"
+            onClick={logout}
+          >
+            Cerrar Sesión
+          </Button>
+        </HStack>
+      </Box>
 
           {/* Quick Actions */}
           <Card>
@@ -139,9 +136,7 @@ const Home = (): JSX.Element => {
               </Card>
             </GridItem>
           </Grid>
-        </VStack>
-      </Container>
-    </Box>
+    </VStack>
   )
 }
 

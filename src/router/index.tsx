@@ -5,6 +5,7 @@ import Register from '../auth/register/register'
 import Home from '../pages/Home'
 import ThemeShowcase from '../components/ThemeShowcase'
 import ProtectedRoute from '../components/ProtectedRoute'
+import Shell from '../components/Shell'
 
 export const router = createBrowserRouter([
   {
@@ -20,12 +21,18 @@ export const router = createBrowserRouter([
     element: <Register />,
   },
   {
-    path: '/home',
+    path: '/app',
     element: (
       <ProtectedRoute>
-        <Home />
+        <Shell />
       </ProtectedRoute>
     ),
+    children: [
+      {
+        index: true,
+        element: <Home />
+      }
+    ]
   },
   {
     path: '/theme-showcase',
