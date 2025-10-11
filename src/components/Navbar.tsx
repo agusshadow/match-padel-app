@@ -178,15 +178,23 @@ const Navbar = (): JSX.Element => {
         ))}
       </HStack>
 
-      {/* Logout Button */}
-      <Button
-        colorScheme="red"
-        variant="outline"
-        size="sm"
-        onClick={logout}
-      >
-        Cerrar Sesión
-      </Button>
+      {/* User Info and Logout */}
+      <HStack spacing={3}>
+        {/* User Name */}
+        <Text fontSize="sm" color="gray.600" fontWeight="medium">
+          {user?.name}
+        </Text>
+        
+        {/* Logout Button */}
+        <Button
+          colorScheme="red"
+          variant="outline"
+          size="sm"
+          onClick={logout}
+        >
+          Cerrar Sesión
+        </Button>
+      </HStack>
     </HStack>
   )
 }
