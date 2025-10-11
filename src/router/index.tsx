@@ -3,6 +3,7 @@ import Landing from '../pages/Landing'
 import Login from '../auth/login/login'
 import Register from '../auth/register/register'
 import Home from '../pages/Home'
+import Profile from '../profile/Profile'
 import ThemeShowcase from '../components/ThemeShowcase'
 import ProtectedRoute from '../components/ProtectedRoute'
 import Shell from '../components/Shell'
@@ -31,6 +32,10 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <Home />
+      },
+      {
+        path: 'profile',
+        element: <Profile />
       }
     ]
   },

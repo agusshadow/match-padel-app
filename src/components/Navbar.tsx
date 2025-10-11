@@ -36,29 +36,29 @@ const Navbar = (): JSX.Element => {
       path: '/app',
       label: 'Home',
       icon: '',
-      color: 'brand',
+      color: 'gray',
       disabled: false
     },
     {
       path: '/app/matches',
       label: 'Matches',
       icon: '',
-      color: 'secondary',
+      color: 'gray',
       disabled: true
     },
     {
       path: '/app/tournaments',
       label: 'Tournaments',
       icon: '',
-      color: 'alternative',
+      color: 'gray',
       disabled: true
     },
     {
       path: '/app/profile',
-      label: 'Profile',
+      label: 'Perfil',
       icon: '',
       color: 'gray',
-      disabled: true
+      disabled: false
     }
   ]
 
