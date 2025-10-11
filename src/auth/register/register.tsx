@@ -10,8 +10,6 @@ import {
   FormLabel,
   Input,
   FormErrorMessage,
-  Alert,
-  AlertIcon,
   Link as ChakraLink
 } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
@@ -44,15 +42,9 @@ const Register = (): JSX.Element => {
               validationSchema={validationSchema}
               onSubmit={handleSubmit}
             >
-              {({ isSubmitting, status }) => (
+              {({ isSubmitting }) => (
                 <Form>
                   <VStack spacing={6}>
-                    {status && (
-                      <Alert status="error">
-                        <AlertIcon />
-                        {status}
-                      </Alert>
-                    )}
 
                     <Field name="name">
                       {({ field, form }: FieldProps) => (

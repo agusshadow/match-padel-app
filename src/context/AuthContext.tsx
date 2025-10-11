@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react'
+import { useToast } from '../shared/hooks/useToast'
 
 interface User {
   id: string
@@ -25,6 +26,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null)
   const [token, setToken] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(true)
+  const { showInfo } = useToast()
 
   // Verificar si hay token en localStorage al cargar la app
   useEffect(() => {
@@ -58,6 +60,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     setUser(null)
     localStorage.removeItem('authToken')
     localStorage.removeItem('authUser')
+    showInfo('Sesión cerrada', 'Has cerrado sesión correctamente')
   }
 
   const value: AuthContextType = {

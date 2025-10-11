@@ -1,22 +1,25 @@
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
 import { authService, RegisterData } from '../../services/authService'
+import { FormikHelpers } from 'formik'
+import { useToast } from '../../shared/hooks/useToast'
 
 export const useSubmit = () => {
   const { login } = useAuth()
   const navigate = useNavigate()
+  const { showSuccess, showError } = useToast()
 
   const handleSubmit = async (
     values: RegisterData,
-    { setSubmitting, setStatus }: any
+    { setSubmitting }: FormikHelpers<RegisterData>
   ) => {
     try {
-      setStatus(null)
       const response = await authService.register(values)
       login(response.token, response.user)
+      showSuccess('¡Cuenta creada!', 'Te has registrado correctamente')
       navigate('/home')
     } catch (error: any) {
-      setStatus(error.response?.data?.message || 'Error al crear la cuenta')
+      showError('Error al crear la cuenta', error.response?.data?.message || 'No se pudo crear la cuenta')
     } finally {
       setSubmitting(false)
     }

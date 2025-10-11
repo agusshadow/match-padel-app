@@ -1,22 +1,25 @@
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
 import { authService, LoginCredentials } from '../../services/authService'
+import { FormikHelpers } from 'formik'
+import { useToast } from '../../shared/hooks/useToast'
 
 export const useSubmit = () => {
   const { login } = useAuth()
   const navigate = useNavigate()
+  const { showSuccess, showError } = useToast()
 
   const handleSubmit = async (
     values: LoginCredentials,
-    { setSubmitting, setStatus }: any
+    { setSubmitting }: FormikHelpers<LoginCredentials>
   ) => {
     try {
-      setStatus(null)
       const response = await authService.login(values)
       login(response.token, response.user)
+      showSuccess('¡Bienvenido!', 'Has iniciado sesión correctamente')
       navigate('/home')
     } catch (error: any) {
-      setStatus(error.response?.data?.message || 'Error al iniciar sesión')
+      showError('Error al iniciar sesión', error.response?.data?.message || 'Credenciales inválidas')
     } finally {
       setSubmitting(false)
     }
