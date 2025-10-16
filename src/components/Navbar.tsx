@@ -42,10 +42,10 @@ const Navbar = (): JSX.Element => {
     },
     {
       path: '/app/matches',
-      label: 'Matches',
+      label: 'Partidos',
       icon: '',
       color: 'gray',
-      disabled: true
+      disabled: false
     },
     {
       path: '/app/tournaments',
