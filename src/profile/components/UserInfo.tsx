@@ -16,7 +16,7 @@ interface UserInfoProps {
   user: User | null
 }
 
-const UserInfo = ({ user }: UserInfoProps): JSX.Element => {
+const UserInfo = ({ user: _user }: UserInfoProps): JSX.Element => {
   // Mock data adicional del usuario
   const userDetails = {
     joinDate: 'Octubre 2024',
@@ -29,13 +29,13 @@ const UserInfo = ({ user }: UserInfoProps): JSX.Element => {
 
   return (
     <Card>
-      <CardHeader>
-        <Heading size="md" color="brand.500">
+      <CardHeader pb={{ base: 2, md: 4 }}>
+        <Heading size={{ base: 'sm', md: 'md' }} color="brand.500">
           Información Personal
         </Heading>
       </CardHeader>
-      <CardBody>
-        <VStack spacing={4} align="stretch">
+      <CardBody pt={{ base: 0, md: 0 }}>
+        <VStack spacing={{ base: 3, md: 4 }} align="stretch">
           <Box>
             <Text fontSize="sm" color="gray.500" mb={1}>
               Miembro desde

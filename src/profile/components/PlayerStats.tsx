@@ -28,13 +28,13 @@ const PlayerStats = (): JSX.Element => {
 
   return (
     <Card>
-      <CardHeader>
-        <Heading size="md" color="secondary.500">
+      <CardHeader pb={{ base: 2, md: 4 }}>
+        <Heading size={{ base: 'sm', md: 'md' }} color="secondary.500">
           Estadísticas de Rendimiento
         </Heading>
       </CardHeader>
-      <CardBody>
-        <VStack spacing={6} align="stretch">
+      <CardBody pt={{ base: 0, md: 0 }}>
+        <VStack spacing={{ base: 4, md: 6 }} align="stretch">
           {/* Estadísticas de Partidos */}
           <Box>
             <Text fontSize="sm" color="gray.500" mb={3}>
