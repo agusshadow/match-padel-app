@@ -12,6 +12,14 @@ import {
   Grid,
   GridItem
 } from '@chakra-ui/react'
+import { 
+  FaTrophy, 
+  FaUsers, 
+  FaBuilding, 
+  FaMedal, 
+  FaBullseye, 
+  FaBolt 
+} from 'react-icons/fa'
 // import { useAuth } from '../context/AuthContext' // Comentado porque el header de bienvenida está deshabilitado
 
 const Home = (): JSX.Element => {
@@ -48,7 +56,16 @@ const Home = (): JSX.Element => {
                 flexDirection="column"
               >
                 <CardBody textAlign="center" py={8} display="flex" flexDirection="column" flex="1">
-                  <Box fontSize="4xl" mb={4}>🏆</Box>
+                  <Box 
+                    fontSize="4xl" 
+                    mb={4} 
+                    color="brand.500"
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                  >
+                    <FaTrophy />
+                  </Box>
                   <Heading size="md" color="brand.600" mb={2}>
                     Crear Partido
                   </Heading>
@@ -66,22 +83,31 @@ const Home = (): JSX.Element => {
                 cursor="pointer" 
                 _hover={{ transform: 'translateY(-2px)', boxShadow: 'lg' }}
                 transition="all 0.2s"
-                bg="secondary.50"
+                bg="brand.50"
                 border="2px solid"
-                borderColor="secondary.200"
+                borderColor="brand.200"
                 h="full"
                 display="flex"
                 flexDirection="column"
               >
                 <CardBody textAlign="center" py={8} display="flex" flexDirection="column" flex="1">
-                  <Box fontSize="4xl" mb={4}>👥</Box>
-                  <Heading size="md" color="secondary.600" mb={2}>
+                  <Box 
+                    fontSize="4xl" 
+                    mb={4} 
+                    color="brand.500"
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                  >
+                    <FaUsers />
+                  </Box>
+                  <Heading size="md" color="brand.600" mb={2}>
                     Unirse a Partido
                   </Heading>
                   <Text fontSize="sm" color="gray.600" mb={4} flex="1">
                     Busca partidos disponibles y únete
                   </Text>
-                  <Button colorScheme="secondary" size="lg" w="full" mt="auto">
+                  <Button colorScheme="brand" size="lg" w="full" mt="auto">
                     Buscar Partidos
                   </Button>
                 </CardBody>
@@ -99,7 +125,16 @@ const Home = (): JSX.Element => {
                 flexDirection="column"
               >
                 <CardBody textAlign="center" py={8} display="flex" flexDirection="column" flex="1">
-                  <Box fontSize="4xl" mb={4}>🏟️</Box>
+                  <Box 
+                    fontSize="4xl" 
+                    mb={4} 
+                    color="gray.500"
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                  >
+                    <FaBuilding />
+                  </Box>
                   <Heading size="md" color="gray.500" mb={2}>
                     Reservar Cancha
                   </Heading>
@@ -131,7 +166,16 @@ const Home = (): JSX.Element => {
                 flexDirection="column"
               >
                 <CardBody textAlign="center" py={8} display="flex" flexDirection="column" flex="1">
-                  <Box fontSize="4xl" mb={4}>🏅</Box>
+                  <Box 
+                    fontSize="4xl" 
+                    mb={4} 
+                    color="gray.500"
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                  >
+                    <FaMedal />
+                  </Box>
                   <Heading size="md" color="gray.500" mb={2}>
                     Unirse a Torneo
                   </Heading>
@@ -171,7 +215,9 @@ const Home = (): JSX.Element => {
                     <Box p={3} bg="green.50" borderRadius="md" border="1px solid" borderColor="green.200">
                       <HStack justify="space-between" align="start" mb={2}>
                         <HStack spacing={2}>
-                          <Text fontSize="lg">🎯</Text>
+                          <Box fontSize="lg" color="green.600">
+                            <FaBullseye />
+                          </Box>
                           <Box>
                             <Text fontWeight="bold" fontSize="sm" color="green.700">
                               Ganar un partido
@@ -199,7 +245,9 @@ const Home = (): JSX.Element => {
                     <Box p={3} bg="green.50" borderRadius="md" border="1px solid" borderColor="green.200">
                       <HStack justify="space-between" align="start" mb={2}>
                         <HStack spacing={2}>
-                          <Text fontSize="lg">⚡</Text>
+                          <Box fontSize="lg" color="green.600">
+                            <FaBolt />
+                          </Box>
                           <Box>
                             <Text fontWeight="bold" fontSize="sm" color="green.700">
                               Jugar 2 partidos
@@ -227,7 +275,9 @@ const Home = (): JSX.Element => {
                     <Box p={3} bg="yellow.50" borderRadius="md" border="1px solid" borderColor="yellow.200">
                       <HStack justify="space-between" align="start" mb={2}>
                         <HStack spacing={2}>
-                          <Text fontSize="lg">🏆</Text>
+                          <Box fontSize="lg" color="yellow.600">
+                            <FaTrophy />
+                          </Box>
                           <Box>
                             <Text fontWeight="bold" fontSize="sm" color="yellow.700">
                               Racha de 3 victorias
