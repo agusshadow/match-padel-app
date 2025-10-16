@@ -1,5 +1,6 @@
 import {
   Box,
+  Container,
   HStack,
   Button,
   Text,
@@ -118,22 +119,26 @@ const Navbar = (): JSX.Element => {
   if (isMobile) {
     return (
       <>
-        {/* Mobile Navbar */}
-        <HStack justify="space-between" w="full" p={4} bg="white" borderRadius="lg" boxShadow="sm">
-          {/* App Logo */}
-          <HStack spacing={2}>
-            <Image src="/src/assets/logo.png" alt="Match Padel" h="32px" />
-          </HStack>
+        {/* Mobile Navbar - Full width container */}
+        <Box w="full" bg="white" borderBottom="1px solid" borderColor="gray.200">
+          <Container maxW="container.xl" py={4}>
+            <HStack justify="space-between" w="full">
+              {/* App Logo */}
+              <HStack spacing={2}>
+                <Image src="/src/assets/logo.png" alt="Match Padel" h="32px" />
+              </HStack>
 
-          {/* Mobile Menu Button */}
-          <IconButton
-            aria-label="Open menu"
-            icon={<Text>☰</Text>}
-            onClick={onOpen}
-            variant="outline"
-            colorScheme="brand"
-          />
-        </HStack>
+              {/* Mobile Menu Button */}
+              <IconButton
+                aria-label="Open menu"
+                icon={<Text>☰</Text>}
+                onClick={onOpen}
+                variant="outline"
+                colorScheme="brand"
+              />
+            </HStack>
+          </Container>
+        </Box>
 
         {/* Mobile Drawer */}
         <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
@@ -155,48 +160,52 @@ const Navbar = (): JSX.Element => {
   }
 
   return (
-    <HStack justify="space-between" w="full" p={4} bg="white" borderRadius="lg" boxShadow="sm">
-      {/* App Logo */}
-      <HStack spacing={2}>
-        <Image src="/src/assets/logo.png" alt="Match Padel" h="32px" />
-      </HStack>
+    <Box w="full" bg="white" borderBottom="1px solid" borderColor="gray.200">
+      <Container maxW="container.xl" py={4}>
+        <HStack justify="space-between" w="full">
+          {/* App Logo */}
+          <HStack spacing={2}>
+            <Image src="/src/assets/logo.png" alt="Match Padel" h="32px" />
+          </HStack>
 
-      {/* Desktop Menu Items */}
-      <HStack spacing={2}>
-        {menuItems.map((item) => (
-          <Button
-            key={item.path}
-            as={item.disabled ? 'button' : Link}
-            {...(item.disabled ? {} : { to: item.path })}
-            colorScheme={item.color}
-            variant={isActive(item.path) ? "solid" : "ghost"}
-            size="sm"
-            isDisabled={item.disabled}
-            opacity={item.disabled ? 0.5 : 1}
-          >
-            {item.label}
-          </Button>
-        ))}
-      </HStack>
+          {/* Desktop Menu Items */}
+          <HStack spacing={2}>
+            {menuItems.map((item) => (
+              <Button
+                key={item.path}
+                as={item.disabled ? 'button' : Link}
+                {...(item.disabled ? {} : { to: item.path })}
+                colorScheme={item.color}
+                variant={isActive(item.path) ? "solid" : "ghost"}
+                size="sm"
+                isDisabled={item.disabled}
+                opacity={item.disabled ? 0.5 : 1}
+              >
+                {item.label}
+              </Button>
+            ))}
+          </HStack>
 
-      {/* User Info and Logout */}
-      <HStack spacing={3}>
-        {/* User Name */}
-        <Text fontSize="sm" color="gray.600" fontWeight="medium">
-          {user?.name}
-        </Text>
-        
-        {/* Logout Button */}
-        <Button
-          colorScheme="red"
-          variant="outline"
-          size="sm"
-          onClick={logout}
-        >
-          Cerrar Sesión
-        </Button>
-      </HStack>
-    </HStack>
+          {/* User Info and Logout */}
+          <HStack spacing={3}>
+            {/* User Name */}
+            <Text fontSize="sm" color="gray.600" fontWeight="medium">
+              {user?.name}
+            </Text>
+            
+            {/* Logout Button */}
+            <Button
+              colorScheme="red"
+              variant="outline"
+              size="sm"
+              onClick={logout}
+            >
+              Cerrar Sesión
+            </Button>
+          </HStack>
+        </HStack>
+      </Container>
+    </Box>
   )
 }
 

@@ -9,14 +9,12 @@ import Navbar from './Navbar'
 const Shell = (): JSX.Element => {
   return (
     <Box minH="100vh" bg="gray.50">
+      {/* Navbar - Full width with border bottom */}
+      <Navbar />
+      
+      {/* Content - Constrained width and padding */}
       <Container maxW="container.xl" py={8}>
-        <VStack spacing={8} align="stretch">
-          {/* Navbar */}
-          <Navbar />
-          
-          {/* Content */}
-          <Outlet />
-        </VStack>
+        <Outlet />
       </Container>
     </Box>
   )
