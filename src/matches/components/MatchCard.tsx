@@ -11,6 +11,13 @@ import {
   Avatar,
   Tooltip
 } from '@chakra-ui/react'
+import { 
+  FaCalendarAlt, 
+  FaClock, 
+  FaMapMarkerAlt, 
+  FaFileAlt, 
+  FaUsers 
+} from 'react-icons/fa'
 import { Match } from '../services/matchService'
 
 interface MatchCardProps {
@@ -107,17 +114,27 @@ const MatchCard = ({ match, onJoin, showJoinButton = true }: MatchCardProps): JS
               {/* Fecha y Hora */}
               <HStack spacing={4}>
                 <VStack align="start" spacing={1}>
-                  <Text fontSize="sm" color="gray.500" fontWeight="semibold">
-                    Fecha
-                  </Text>
+                  <HStack spacing={2}>
+                    <Box color="gray.500" fontSize="sm">
+                      <FaCalendarAlt />
+                    </Box>
+                    <Text fontSize="sm" color="gray.500" fontWeight="semibold">
+                      Fecha
+                    </Text>
+                  </HStack>
                   <Text fontSize="sm" color="gray.700">
                     {formatDate(match.reservation?.scheduledDate || '')}
                   </Text>
                 </VStack>
                 <VStack align="start" spacing={1}>
-                  <Text fontSize="sm" color="gray.500" fontWeight="semibold">
-                    Hora
-                  </Text>
+                  <HStack spacing={2}>
+                    <Box color="gray.500" fontSize="sm">
+                      <FaClock />
+                    </Box>
+                    <Text fontSize="sm" color="gray.500" fontWeight="semibold">
+                      Hora
+                    </Text>
+                  </HStack>
                   <Text fontSize="sm" color="gray.700">
                     {formatTime(match.reservation?.startTime || '')}
                   </Text>
@@ -126,9 +143,14 @@ const MatchCard = ({ match, onJoin, showJoinButton = true }: MatchCardProps): JS
 
               {/* Ubicación */}
               <Box>
-                <Text fontSize="sm" color="gray.500" fontWeight="semibold" mb={1}>
-                  Ubicación
-                </Text>
+                <HStack spacing={2} mb={1}>
+                  <Box color="gray.500" fontSize="sm">
+                    <FaMapMarkerAlt />
+                  </Box>
+                  <Text fontSize="sm" color="gray.500" fontWeight="semibold">
+                    Ubicación
+                  </Text>
+                </HStack>
                 <Text fontSize="sm" color="gray.700">
                   {match.reservation?.court?.club?.address} {match.reservation?.court?.club?.city && `(${match.reservation.court.club.city})`}
                 </Text>
@@ -137,9 +159,14 @@ const MatchCard = ({ match, onJoin, showJoinButton = true }: MatchCardProps): JS
               {/* Descripción */}
               {match.notes && (
                 <Box>
-                  <Text fontSize="sm" color="gray.500" fontWeight="semibold" mb={1}>
-                    Descripción
-                  </Text>
+                  <HStack spacing={2} mb={1}>
+                    <Box color="gray.500" fontSize="sm">
+                      <FaFileAlt />
+                    </Box>
+                    <Text fontSize="sm" color="gray.500" fontWeight="semibold">
+                      Descripción
+                    </Text>
+                  </HStack>
                   <Text fontSize="sm" color="gray.700">
                     {match.notes}
                   </Text>
@@ -149,9 +176,14 @@ const MatchCard = ({ match, onJoin, showJoinButton = true }: MatchCardProps): JS
 
             {/* Jugadores - Móvil (debajo) */}
             <VStack spacing={2} align="center">
-              <Text fontSize="sm" color="gray.500" fontWeight="semibold">
-                Jugadores
-              </Text>
+              <HStack spacing={2}>
+                <Box color="gray.500" fontSize="sm">
+                  <FaUsers />
+                </Box>
+                <Text fontSize="sm" color="gray.500" fontWeight="semibold">
+                  Jugadores
+                </Text>
+              </HStack>
               <HStack spacing={2}>
                 {getPlayerAvatars()}
               </HStack>
@@ -165,17 +197,27 @@ const MatchCard = ({ match, onJoin, showJoinButton = true }: MatchCardProps): JS
               {/* Fecha y Hora */}
               <HStack spacing={4}>
                 <VStack align="start" spacing={1}>
-                  <Text fontSize="sm" color="gray.500" fontWeight="semibold">
-                    Fecha
-                  </Text>
+                  <HStack spacing={2}>
+                    <Box color="gray.500" fontSize="sm">
+                      <FaCalendarAlt />
+                    </Box>
+                    <Text fontSize="sm" color="gray.500" fontWeight="semibold">
+                      Fecha
+                    </Text>
+                  </HStack>
                   <Text fontSize="sm" color="gray.700">
                     {formatDate(match.reservation?.scheduledDate || '')}
                   </Text>
                 </VStack>
                 <VStack align="start" spacing={1}>
-                  <Text fontSize="sm" color="gray.500" fontWeight="semibold">
-                    Hora
-                  </Text>
+                  <HStack spacing={2}>
+                    <Box color="gray.500" fontSize="sm">
+                      <FaClock />
+                    </Box>
+                    <Text fontSize="sm" color="gray.500" fontWeight="semibold">
+                      Hora
+                    </Text>
+                  </HStack>
                   <Text fontSize="sm" color="gray.700">
                     {formatTime(match.reservation?.startTime || '')}
                   </Text>
@@ -184,9 +226,14 @@ const MatchCard = ({ match, onJoin, showJoinButton = true }: MatchCardProps): JS
 
               {/* Ubicación */}
               <Box>
-                <Text fontSize="sm" color="gray.500" fontWeight="semibold" mb={1}>
-                  Ubicación
-                </Text>
+                <HStack spacing={2} mb={1}>
+                  <Box color="gray.500" fontSize="sm">
+                    <FaMapMarkerAlt />
+                  </Box>
+                  <Text fontSize="sm" color="gray.500" fontWeight="semibold">
+                    Ubicación
+                  </Text>
+                </HStack>
                 <Text fontSize="sm" color="gray.700">
                   {match.reservation?.court?.club?.address} {match.reservation?.court?.club?.city && `(${match.reservation.court.club.city})`}
                 </Text>
@@ -195,9 +242,14 @@ const MatchCard = ({ match, onJoin, showJoinButton = true }: MatchCardProps): JS
               {/* Descripción */}
               {match.notes && (
                 <Box>
-                  <Text fontSize="sm" color="gray.500" fontWeight="semibold" mb={1}>
-                    Descripción
-                  </Text>
+                  <HStack spacing={2} mb={1}>
+                    <Box color="gray.500" fontSize="sm">
+                      <FaFileAlt />
+                    </Box>
+                    <Text fontSize="sm" color="gray.500" fontWeight="semibold">
+                      Descripción
+                    </Text>
+                  </HStack>
                   <Text fontSize="sm" color="gray.700">
                     {match.notes}
                   </Text>
@@ -207,9 +259,14 @@ const MatchCard = ({ match, onJoin, showJoinButton = true }: MatchCardProps): JS
 
             {/* Columna derecha - Jugadores */}
             <VStack spacing={2} align="center" minW="120px">
-              <Text fontSize="sm" color="gray.500" fontWeight="semibold">
-                Jugadores
-              </Text>
+              <HStack spacing={2}>
+                <Box color="gray.500" fontSize="sm">
+                  <FaUsers />
+                </Box>
+                <Text fontSize="sm" color="gray.500" fontWeight="semibold">
+                  Jugadores
+                </Text>
+              </HStack>
               <HStack spacing={2}>
                 {getPlayerAvatars()}
               </HStack>
