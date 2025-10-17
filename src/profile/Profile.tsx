@@ -7,8 +7,6 @@ import {
   Text,
   Card,
   CardBody,
-  Grid,
-  GridItem,
   Avatar,
   Badge,
   Progress,

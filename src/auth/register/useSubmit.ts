@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
-import { authService, RegisterData } from '../../services/authService'
+import { register as registerApi } from '../../api/entities'
+import { RegisterData } from '../../types'
 import { FormikHelpers } from 'formik'
 import { useToast } from '../../shared/hooks/useToast'
 
@@ -14,7 +15,7 @@ export const useSubmit = () => {
     { setSubmitting }: FormikHelpers<RegisterData>
   ) => {
     try {
-      const response = await authService.register(values)
+      const response = await registerApi(values)
       login(response.data.token, response.data.user)
       showSuccess('¡Cuenta creada!', 'Te has registrado correctamente')
       navigate('/app')

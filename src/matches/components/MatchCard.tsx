@@ -18,7 +18,7 @@ import {
   FaFileAlt, 
   FaUsers 
 } from 'react-icons/fa'
-import { Match } from '../services/matchService'
+import { Match } from '../../types'
 
 interface MatchCardProps {
   match: Match

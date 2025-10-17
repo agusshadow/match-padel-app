@@ -10,7 +10,7 @@ import {
   Divider,
   Box
 } from '@chakra-ui/react'
-import { User } from '../../services/authService'
+import { User } from '../../types'
 
 interface UserInfoProps {
   user: User | null

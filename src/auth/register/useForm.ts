@@ -1,5 +1,5 @@
 import * as Yup from 'yup'
-import { RegisterData } from '../../services/authService'
+import { RegisterData } from '../../types'
 
 export const useForm = () => {
   const initialValues: RegisterData = {

@@ -1,10 +1,11 @@
 import { createBrowserRouter } from 'react-router-dom'
-import Landing from '../pages/Landing'
+import Landing from '../components/Landing'
 import Login from '../auth/login/login'
 import Register from '../auth/register/register'
-import Home from '../pages/Home'
+import Home from '../components/Home'
 import Profile from '../profile/Profile'
 import Matches from '../matches/Matches'
+import CreateMatch from '../matches/create/CreateMatch'
 import ThemeShowcase from '../components/ThemeShowcase'
 import ProtectedRoute from '../components/ProtectedRoute'
 import Shell from '../components/Shell'
@@ -41,6 +42,10 @@ export const router = createBrowserRouter([
       {
         path: 'matches',
         element: <Matches />
+      },
+      {
+        path: 'matches/create',
+        element: <CreateMatch />
       }
     ]
   },

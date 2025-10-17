@@ -1,18 +1,19 @@
 import {
   Box,
   Button,
-  Heading,
   Text,
-  VStack,
-  HStack,
   Card,
   CardBody,
   Spinner,
   Alert,
-  AlertIcon
+  AlertIcon,
+  VStack,
+  Heading,
+  Grid,
+  GridItem
 } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
-import { useMatches } from './hooks/useMatches'
+import { useMatches } from '../api/entities'
 import MatchCard from './components/MatchCard'
 
 const Matches = (): JSX.Element => {
@@ -47,10 +48,10 @@ const Matches = (): JSX.Element => {
   }
 
   return (
-    <VStack spacing={8} align="stretch">
+    <VStack spacing={8} align="stretch" p={6}>
       {/* Header */}
       <Box>
-        <HStack justify="space-between" align="center" mb={6}>
+        <Box display="flex" justifyContent="space-between" alignItems="center" mb={6}>
           <VStack align="start" spacing={1}>
             <Heading size="lg" color="brand.500">
               Partidos
@@ -59,8 +60,7 @@ const Matches = (): JSX.Element => {
               Encuentra partidos disponibles o crea uno
             </Text>
           </VStack>
-        </HStack>
-        {/* Botón de Crear Partido */}
+        </Box>
         <Button
             colorScheme="brand"
             size="lg"
@@ -70,16 +70,12 @@ const Matches = (): JSX.Element => {
           </Button>
       </Box>
 
-
- 
-
       {/* Lista de partidos disponibles */}
       <Box>
-        
         {availableMatches.length === 0 ? (
           <Card>
             <CardBody textAlign="center" py={12}>
-              <Box fontSize="4xl" mb={4}>🔍</Box>
+              <Text fontSize="4xl" mb={4}>🔍</Text>
               <Heading size="md" color="gray.600" mb={2}>
                 No hay partidos disponibles
               </Heading>
@@ -92,15 +88,19 @@ const Matches = (): JSX.Element => {
             </CardBody>
           </Card>
         ) : (
-          <VStack spacing={4} align="stretch">
+          <Grid 
+            templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }} 
+            gap={4}
+          >
             {availableMatches.map((match) => (
-              <MatchCard
-                key={match.id}
-                match={match}
-                showJoinButton={true}
-              />
+              <GridItem key={match.id}>
+                <MatchCard
+                  match={match}
+                  showJoinButton={true}
+                />
+              </GridItem>
             ))}
-          </VStack>
+          </Grid>
         )}
       </Box>
     </VStack>

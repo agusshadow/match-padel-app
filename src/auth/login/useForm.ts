@@ -1,5 +1,5 @@
 import * as Yup from 'yup'
-import { LoginCredentials } from '../../services/authService'
+import { LoginCredentials } from '../../types'
 
 export const useForm = () => {
   const initialValues: LoginCredentials = {
