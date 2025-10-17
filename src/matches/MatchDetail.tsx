@@ -22,8 +22,7 @@ import {
   FaClock, 
   FaMapMarkerAlt, 
   FaFileAlt, 
-  FaUsers,
-  FaUserPlus
+  FaUsers
 } from 'react-icons/fa'
 import { useMatchDetail, joinMatch } from '../api/entities'
 import { useToast } from '../shared/hooks/useToast'
@@ -48,6 +47,18 @@ const MatchDetail = (): JSX.Element => {
 
   const formatTime = (timeString: string) => {
     return timeString.substring(0, 5)
+  }
+
+  const parseScore = (scoreString: string) => {
+    try {
+      const score = JSON.parse(scoreString)
+      if (score.sets && Array.isArray(score.sets)) {
+        return score.sets.map((set: any) => `${set.team1}-${set.team2}`).join(', ')
+      }
+      return scoreString
+    } catch (error) {
+      return scoreString
+    }
   }
 
   const getPlayerAvatars = () => {
@@ -208,6 +219,23 @@ const MatchDetail = (): JSX.Element => {
                       </HStack>
                       <Text color="gray.600">
                         {match.notes}
+                      </Text>
+                    </Box>
+                  )}
+
+                  {/* Resultado del partido si está completado */}
+                  {match.status === 'completed' && match.score && (
+                    <Box>
+                      <HStack spacing={2} mb={2}>
+                        <Box color="green.500">
+                          <FaClock />
+                        </Box>
+                        <Text fontWeight="semibold" color="gray.700">
+                          Resultado Final
+                        </Text>
+                      </HStack>
+                      <Text color="green.600" fontSize="lg" fontWeight="bold">
+                        {parseScore(match.score)}
                       </Text>
                     </Box>
                   )}

@@ -3,7 +3,7 @@ import { getMatches } from '../api'
 import { Match } from '../../../../types'
 import { useToast } from '../../../../shared/hooks/useToast'
 
-export const useMatches = () => {
+export const useMatches = (filterByPlayerId: boolean = false) => {
   const [matches, setMatches] = useState<Match[]>([])
   const { showError } = useToast()
 
@@ -12,7 +12,11 @@ export const useMatches = () => {
 
   const loadMatches = async () => {
     try {
-      const matchesData = await getMatches({ status: 'available' })
+      const params = filterByPlayerId 
+        ? { filterByPlayerId: true }
+        : { status: 'available' }
+      
+      const matchesData = await getMatches(params)
       setMatches(Array.isArray(matchesData) ? matchesData : [])
     } catch (error) {
       console.error('Error loading matches:', error)
@@ -24,7 +28,7 @@ export const useMatches = () => {
   // Cargar partidos al montar el componente
   useEffect(() => {
     loadMatches()
-  }, [])
+  }, [filterByPlayerId])
 
   return {
     // Data

@@ -10,13 +10,18 @@ import {
   Avatar,
   Badge,
   Progress,
+  Grid,
+  GridItem,
 } from '@chakra-ui/react'
 import { useAuth } from '../context/AuthContext'
 import UserInfo from './components/UserInfo'
 import PlayerStats from './components/PlayerStats'
+import UserMatchCard from './components/UserMatchCard'
+import { useMatches } from '../api/entities'
 
 const Profile = (): JSX.Element => {
   const { user } = useAuth()
+  const { matches: userMatches } = useMatches(true)
 
   // Mock data para el nivel del jugador
   const playerLevel = {
@@ -146,6 +151,45 @@ const Profile = (): JSX.Element => {
         <VStack spacing={{ base: 6, md: 8 }} align="stretch">
           <UserInfo user={user} />
           <PlayerStats />
+          
+          {/* Mis Partidos */}
+          <Card>
+            <CardBody p={{ base: 4, md: 6 }}>
+              <VStack spacing={4} align="stretch">
+                <VStack align="start" spacing={1}>
+                  <Heading size="md" color="brand.500">
+                    Mis Partidos
+                  </Heading>
+                  <Text color="gray.600" fontSize="sm">
+                    Partidos en los que participas
+                  </Text>
+                </VStack>
+                
+                {userMatches.length === 0 ? (
+                  <Box textAlign="center" py={8}>
+                    <Text fontSize="3xl" mb={3}>🏓</Text>
+                    <Text color="gray.600" mb={2}>
+                      No tienes partidos programados
+                    </Text>
+                    <Text color="gray.500" fontSize="sm">
+                      Únete a un partido disponible o crea uno nuevo
+                    </Text>
+                  </Box>
+                ) : (
+                  <Grid
+                    templateColumns={{ base: "1fr", md: "repeat(2, 1fr)", lg: "repeat(3, 1fr)" }}
+                    gap={4}
+                  >
+                    {userMatches.map((match) => (
+                      <GridItem key={match.id}>
+                        <UserMatchCard match={match} />
+                      </GridItem>
+                    ))}
+                  </Grid>
+                )}
+              </VStack>
+            </CardBody>
+          </Card>
         </VStack>
       </VStack>
     </Container>
