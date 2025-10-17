@@ -39,7 +39,7 @@ const Landing = (): JSX.Element => {
           <VStack spacing={12} align="center" textAlign="center">
             {/* Logo and Title */}
             <VStack spacing={6}>
-              <Image src="/src/assets/logo.png" alt="Match Padel" h="100px" />
+              <Image src="/src/assets/logo.png" alt="Match Padel" h="150px" />
               <VStack spacing={4}>
                 <Text fontSize="2xl" color="gray.700" maxW="800px" lineHeight="1.6">
                   La plataforma definitiva para conectar jugadores de pádel, organizar partidos 
