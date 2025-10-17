@@ -1,9 +1,10 @@
 import { useToast as useChakraToast } from '@chakra-ui/react'
+import { useCallback } from 'react'
 
 export const useToast = () => {
   const toast = useChakraToast()
 
-  const showSuccess = (title: string, description?: string) => {
+  const showSuccess = useCallback((title: string, description?: string) => {
     toast({
       title,
       description,
@@ -12,9 +13,9 @@ export const useToast = () => {
       isClosable: true,
       position: 'top-right',
     })
-  }
+  }, [toast])
 
-  const showError = (title: string, description?: string) => {
+  const showError = useCallback((title: string, description?: string) => {
     toast({
       title,
       description,
@@ -23,9 +24,9 @@ export const useToast = () => {
       isClosable: true,
       position: 'top-right',
     })
-  }
+  }, [toast])
 
-  const showWarning = (title: string, description?: string) => {
+  const showWarning = useCallback((title: string, description?: string) => {
     toast({
       title,
       description,
@@ -34,9 +35,9 @@ export const useToast = () => {
       isClosable: true,
       position: 'top-right',
     })
-  }
+  }, [toast])
 
-  const showInfo = (title: string, description?: string) => {
+  const showInfo = useCallback((title: string, description?: string) => {
     toast({
       title,
       description,
@@ -45,7 +46,7 @@ export const useToast = () => {
       isClosable: true,
       position: 'top-right',
     })
-  }
+  }, [toast])
 
   return {
     showSuccess,
