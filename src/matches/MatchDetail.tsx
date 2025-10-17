@@ -27,11 +27,13 @@ import {
 } from 'react-icons/fa'
 import { useMatchDetail, joinMatch } from '../api/entities'
 import { useToast } from '../shared/hooks/useToast'
+import { useAuth } from '../context/AuthContext'
 
 const MatchDetail = (): JSX.Element => {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
   const { showError, showSuccess } = useToast()
+  const { user } = useAuth()
   const { match, loadMatchDetail } = useMatchDetail(id ? parseInt(id) : undefined)
 
   const formatDate = (dateString: string) => {
@@ -85,6 +87,18 @@ const MatchDetail = (): JSX.Element => {
     return 4 - players.length
   }
 
+  // Verificar si el usuario actual ya está en el partido
+  const isUserInMatch = () => {
+    if (!user || !match) return false
+    
+    return (
+      match.player1Id === user.id ||
+      match.player2Id === user.id ||
+      match.player3Id === user.id ||
+      match.player4Id === user.id
+    )
+  }
+
   const handleJoinMatch = async () => {
     if (!match) return
     
@@ -119,16 +133,6 @@ const MatchDetail = (): JSX.Element => {
             {match.reservation?.court?.club?.name} - {match.reservation?.court?.name}
           </Text>
         </VStack>
-        
-        {getMissingPlayers() > 0 && (
-          <Button
-            colorScheme="brand"
-            leftIcon={<FaUserPlus />}
-            onClick={handleJoinMatch}
-          >
-            Unirse al Partido
-          </Button>
-        )}
       </Flex>
 
       <Grid templateColumns={{ base: "1fr", lg: "2fr 1fr" }} gap={8}>
@@ -317,12 +321,20 @@ const MatchDetail = (): JSX.Element => {
             <Card>
               <CardBody>
                 <VStack spacing={3}>
-                  {getMissingPlayers() > 0 ? (
+                  {isUserInMatch() ? (
+                    <Button
+                      colorScheme="blue"
+                      size="lg"
+                      w="full"
+                      isDisabled
+                    >
+                      Ya estás en este partido
+                    </Button>
+                  ) : getMissingPlayers() > 0 ? (
                     <Button
                       colorScheme="brand"
                       size="lg"
                       w="full"
-                      leftIcon={<FaUserPlus />}
                       onClick={handleJoinMatch}
                     >
                       Unirse al Partido

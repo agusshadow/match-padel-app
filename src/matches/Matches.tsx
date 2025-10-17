@@ -10,14 +10,29 @@ import {
   GridItem
 } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
-import { useMatches } from '../api/entities'
+import { useMatches, joinMatch } from '../api/entities'
+import { useToast } from '../shared/hooks/useToast'
 import MatchCard from './components/MatchCard'
 
 const Matches = (): JSX.Element => {
   const navigate = useNavigate()
+  const { showSuccess, showError } = useToast()
   const {
-    availableMatches
+    availableMatches,
+    loadMatches
   } = useMatches()
+
+  const handleJoinMatch = async (matchId: number) => {
+    try {
+      await joinMatch(matchId)
+      showSuccess('Te has unido al partido exitosamente')
+      // Recargar la lista de partidos para actualizar el estado
+      loadMatches()
+    } catch (error) {
+      console.error('Error joining match:', error)
+      showError('Error al unirse al partido')
+    }
+  }
 
   return (
     <VStack spacing={8} align="stretch" p={6}>
@@ -69,6 +84,7 @@ const Matches = (): JSX.Element => {
                 <MatchCard
                   match={match}
                   showJoinButton={true}
+                  onJoin={handleJoinMatch}
                 />
               </GridItem>
             ))}

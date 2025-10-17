@@ -12,6 +12,7 @@ import {
   Tooltip
 } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../../context/AuthContext'
 import { 
   FaCalendarAlt, 
   FaClock, 
@@ -29,6 +30,7 @@ interface MatchCardProps {
 
 const MatchCard = ({ match, onJoin, showJoinButton = true }: MatchCardProps): JSX.Element => {
   const navigate = useNavigate()
+  const { user } = useAuth()
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString)
@@ -42,6 +44,30 @@ const MatchCard = ({ match, onJoin, showJoinButton = true }: MatchCardProps): JS
 
   const formatTime = (timeString: string) => {
     return timeString.substring(0, 5) // Convertir "18:00:00" a "18:00"
+  }
+
+  // Verificar si el partido está completo (4 jugadores)
+  const isMatchFull = () => {
+    const players = [
+      match.player1,
+      match.player2,
+      match.player3,
+      match.player4
+    ].filter(player => player !== null && player !== undefined)
+    
+    return players.length >= 4
+  }
+
+  // Verificar si el usuario actual ya está en el partido
+  const isUserInMatch = () => {
+    if (!user) return false
+    
+    return (
+      match.player1Id === user.id ||
+      match.player2Id === user.id ||
+      match.player3Id === user.id ||
+      match.player4Id === user.id
+    )
   }
 
 
@@ -139,7 +165,7 @@ const MatchCard = ({ match, onJoin, showJoinButton = true }: MatchCardProps): JS
                     </Text>
                   </HStack>
                   <Text fontSize="sm" color="gray.700">
-                    {formatTime(match.reservation?.startTime || '')}
+                    {formatTime((match.reservation as any)?.slot?.startTime || '')}
                   </Text>
                 </VStack>
               </HStack>
@@ -222,7 +248,7 @@ const MatchCard = ({ match, onJoin, showJoinButton = true }: MatchCardProps): JS
                     </Text>
                   </HStack>
                   <Text fontSize="sm" color="gray.700">
-                    {formatTime(match.reservation?.startTime || '')}
+                    {formatTime((match.reservation as any)?.slot?.startTime || '')}
                   </Text>
                 </VStack>
               </HStack>
@@ -290,14 +316,34 @@ const MatchCard = ({ match, onJoin, showJoinButton = true }: MatchCardProps): JS
               Ver Detalle
             </Button>
             {showJoinButton && (
-              <Button
-                colorScheme="brand"
-                size="md"
-                flex={1}
-                onClick={() => onJoin?.(match.id)}
-              >
-                Unirse al Partido
-              </Button>
+              isUserInMatch() ? (
+                <Button
+                  colorScheme="blue"
+                  size="md"
+                  flex={1}
+                  isDisabled
+                >
+                  Ya estás en este partido
+                </Button>
+              ) : isMatchFull() ? (
+                <Button
+                  colorScheme="green"
+                  size="md"
+                  flex={1}
+                  isDisabled
+                >
+                  Partido Completo
+                </Button>
+              ) : (
+                <Button
+                  colorScheme="brand"
+                  size="md"
+                  flex={1}
+                  onClick={() => onJoin?.(match.id)}
+                >
+                  Unirse al Partido
+                </Button>
+              )
             )}
           </HStack>
         </VStack>
