@@ -9,7 +9,6 @@ import {
   Grid, 
   GridItem,
   HStack,
-  Spinner,
   Badge,
   Heading,
   Progress,
@@ -28,7 +27,6 @@ const CreateMatch: React.FC = () => {
   const {
     // Estado
     activeStep,
-    loading,
     formData,
     clubs,
     courts,
@@ -315,13 +313,7 @@ const CreateMatch: React.FC = () => {
 
       <Card>
         <CardBody>
-          {loading ? (
-            <Flex justify="center" py={8}>
-              <Spinner size="xl" color="blue.500" />
-            </Flex>
-          ) : (
-            renderStepContent()
-          )}
+          {renderStepContent()}
         </CardBody>
       </Card>
 
@@ -338,7 +330,6 @@ const CreateMatch: React.FC = () => {
           <Button
             colorScheme="blue"
             onClick={onSubmit}
-            isLoading={loading}
             isDisabled={!formData.selectedDate || !formData.slotId}
           >
             Crear Partido

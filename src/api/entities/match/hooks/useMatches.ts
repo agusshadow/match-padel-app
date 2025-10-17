@@ -4,7 +4,6 @@ import { Match } from '../../../../types'
 
 export const useMatches = () => {
   const [matches, setMatches] = useState<Match[]>([])
-  const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
   // Mostrar todos los partidos sin filtros
@@ -12,7 +11,6 @@ export const useMatches = () => {
 
   const loadMatches = async () => {
     try {
-      setLoading(true)
       setError(null)
       const matchesData = await getMatches()
       setMatches(Array.isArray(matchesData) ? matchesData : [])
@@ -20,8 +18,6 @@ export const useMatches = () => {
       console.error('Error loading matches:', error)
       setError('Error al cargar los partidos')
       setMatches([])
-    } finally {
-      setLoading(false)
     }
   }
 
@@ -36,7 +32,6 @@ export const useMatches = () => {
     availableMatches,
     
     // Loading states
-    loading,
     error,
     
     // Actions

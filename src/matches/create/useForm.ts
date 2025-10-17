@@ -12,9 +12,7 @@ export interface CreateMatchForm {
 }
 
 export const useForm = (onError?: (message: string) => void) => {
-  
   const [activeStep, setActiveStep] = useState(0)
-  const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   
   const [formData, setFormData] = useState<CreateMatchForm>({
@@ -32,7 +30,6 @@ export const useForm = (onError?: (message: string) => void) => {
 
   const loadClubs = useCallback(async () => {
     try {
-      setLoading(true)
       const clubsData = await getClubs()
       setClubs(clubsData)
     } catch (error) {
@@ -40,14 +37,11 @@ export const useForm = (onError?: (message: string) => void) => {
       const errorMessage = 'Error al cargar los clubes'
       setError(errorMessage)
       onError?.(errorMessage)
-    } finally {
-      setLoading(false)
     }
   }, [onError])
 
   const loadCourts = useCallback(async (clubId: number) => {
     try {
-      setLoading(true)
       const courtsData = await getCourtsByClub(clubId)
       setCourts(courtsData)
       // Limpiar selecciones posteriores
@@ -64,14 +58,11 @@ export const useForm = (onError?: (message: string) => void) => {
       const errorMessage = 'Error al cargar las canchas'
       setError(errorMessage)
       onError?.(errorMessage)
-    } finally {
-      setLoading(false)
     }
   }, [onError])
 
   const loadSchedules = useCallback(async (courtId: number) => {
     try {
-      setLoading(true)
       const schedulesData = await getAvailableSlotsByCourtAndDay(courtId, 0)
       setSchedules(schedulesData)
       // Limpiar selecciones posteriores
@@ -86,14 +77,11 @@ export const useForm = (onError?: (message: string) => void) => {
       const errorMessage = 'Error al cargar los horarios'
       setError(errorMessage)
       onError?.(errorMessage)
-    } finally {
-      setLoading(false)
     }
   }, [onError])
 
   const loadAvailableSlots = useCallback(async (courtId: number, date: string) => {
     try {
-      setLoading(true)
       // Convertir fecha a dayOfWeek (0 = Domingo, 1 = Lunes, etc.)
       const selectedDate = new Date(date)
       const dayOfWeek = selectedDate.getDay()
@@ -111,8 +99,6 @@ export const useForm = (onError?: (message: string) => void) => {
       const errorMessage = 'Error al cargar los horarios disponibles'
       setError(errorMessage)
       onError?.(errorMessage)
-    } finally {
-      setLoading(false)
     }
   }, [onError])
 
@@ -168,7 +154,6 @@ export const useForm = (onError?: (message: string) => void) => {
   return {
     // Estado
     activeStep,
-    loading,
     error,
     formData,
     clubs,

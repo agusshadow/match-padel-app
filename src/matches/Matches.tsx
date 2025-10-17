@@ -4,7 +4,6 @@ import {
   Text,
   Card,
   CardBody,
-  Spinner,
   Alert,
   AlertIcon,
   VStack,
@@ -20,18 +19,8 @@ const Matches = (): JSX.Element => {
   const navigate = useNavigate()
   const {
     availableMatches,
-    loading,
     error
   } = useMatches()
-
-  if (loading) {
-    return (
-      <VStack spacing={8} align="center" py={20}>
-        <Spinner size="xl" color="brand.500" />
-        <Text color="gray.600">Cargando partidos...</Text>
-      </VStack>
-    )
-  }
 
   if (error) {
     return (
