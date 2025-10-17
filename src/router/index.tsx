@@ -6,6 +6,7 @@ import Home from '../components/Home'
 import Profile from '../profile/Profile'
 import Matches from '../matches/Matches'
 import CreateMatch from '../matches/create/CreateMatch'
+import MatchDetail from '../matches/MatchDetail'
 import ThemeShowcase from '../components/ThemeShowcase'
 import ProtectedRoute from '../components/ProtectedRoute'
 import Shell from '../components/Shell'
@@ -46,6 +47,10 @@ export const router = createBrowserRouter([
       {
         path: 'matches/create',
         element: <CreateMatch />
+      },
+      {
+        path: 'matches/:id',
+        element: <MatchDetail />
       }
     ]
   },

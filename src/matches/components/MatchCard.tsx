@@ -11,6 +11,7 @@ import {
   Avatar,
   Tooltip
 } from '@chakra-ui/react'
+import { useNavigate } from 'react-router-dom'
 import { 
   FaCalendarAlt, 
   FaClock, 
@@ -27,6 +28,8 @@ interface MatchCardProps {
 }
 
 const MatchCard = ({ match, onJoin, showJoinButton = true }: MatchCardProps): JSX.Element => {
+  const navigate = useNavigate()
+
   const formatDate = (dateString: string) => {
     const date = new Date(dateString)
     return date.toLocaleDateString('es-ES', {
@@ -276,16 +279,27 @@ const MatchCard = ({ match, onJoin, showJoinButton = true }: MatchCardProps): JS
           <Divider />
 
           {/* Acciones */}
-          {showJoinButton && (
+          <HStack spacing={3}>
             <Button
+              variant="outline"
               colorScheme="brand"
               size="md"
-              w="full"
-              onClick={() => onJoin?.(match.id)}
+              flex={1}
+              onClick={() => navigate(`/app/matches/${match.id}`)}
             >
-              Unirse al Partido
+              Ver Detalle
             </Button>
-          )}
+            {showJoinButton && (
+              <Button
+                colorScheme="brand"
+                size="md"
+                flex={1}
+                onClick={() => onJoin?.(match.id)}
+              >
+                Unirse al Partido
+              </Button>
+            )}
+          </HStack>
         </VStack>
       </CardBody>
     </Card>

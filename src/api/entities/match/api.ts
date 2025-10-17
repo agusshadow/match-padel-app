@@ -19,6 +19,12 @@ export const getMatch = async (matchId: number): Promise<Match> => {
   return response.data
 }
 
+// Obtener un partido específico con detalles completos
+export const getMatchDetailed = async (matchId: number): Promise<Match> => {
+  const response = await api.get(`/matches/${matchId}/detailed`)
+  return response.data.data || response.data
+}
+
 // Unirse a un partido
 export const joinMatch = async (matchId: number): Promise<void> => {
   await api.post(`/matches/${matchId}/join`)

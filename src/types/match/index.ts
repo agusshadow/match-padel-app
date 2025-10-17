@@ -19,19 +19,30 @@ export interface Court {
   club?: Club
 }
 
+export interface Slot {
+  id: number
+  courtId: number
+  dayOfWeek: number
+  startTime: string
+  endTime: string
+  isAvailable: boolean
+  price: string
+  createdAt: string
+  updatedAt: string
+}
+
 export interface Reservation {
   id: number
   courtId: number
   userId: number
   scheduledDate: string
-  startTime: string
-  endTime: string
+  slotId: number
   status: 'pending' | 'confirmed' | 'completed' | 'cancelled'
-  totalPrice: string
   createdAt: string
   updatedAt: string
   court?: Court
   user?: User
+  slot?: Slot
 }
 
 export interface Match extends BaseEntity {
