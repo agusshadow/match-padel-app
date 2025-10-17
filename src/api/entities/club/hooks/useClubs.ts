@@ -1,26 +1,25 @@
 import { useState, useCallback } from 'react'
 import { getClubs } from '../api'
 import { Club } from '../../../../types'
+import { useToast } from '../../../../shared/hooks/useToast'
 
 export const useClubs = () => {
   const [clubs, setClubs] = useState<Club[]>([])
-  const [error, setError] = useState<string | null>(null)
+  const { showError } = useToast()
 
   const loadClubs = useCallback(async () => {
     try {
-      setError(null)
       const clubsData = await getClubs()
       setClubs(clubsData)
     } catch (error) {
       console.error('Error loading clubs:', error)
-      setError('Error al cargar los clubes')
+      showError('Error al cargar los clubes')
       throw error
     }
-  }, [])
+  }, [showError])
 
   return {
     clubs,
-    error,
     loadClubs
   }
 }

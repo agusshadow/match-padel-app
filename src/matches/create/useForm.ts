@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react'
 import { getClubs, getCourtsByClub, getAvailableSlotsByCourtAndDay } from '../../api/entities'
 import { Club, Court, CourtSchedule } from '../../types'
+import { useToast } from '../../shared/hooks/useToast'
 
 export interface CreateMatchForm {
   clubId: number | null
@@ -11,9 +12,9 @@ export interface CreateMatchForm {
   notes: string
 }
 
-export const useForm = (onError?: (message: string) => void) => {
+export const useForm = () => {
   const [activeStep, setActiveStep] = useState(0)
-  const [error, setError] = useState<string | null>(null)
+  const { showError } = useToast()
   
   const [formData, setFormData] = useState<CreateMatchForm>({
     clubId: null,
@@ -34,11 +35,9 @@ export const useForm = (onError?: (message: string) => void) => {
       setClubs(clubsData)
     } catch (error) {
       console.error('Error loading clubs:', error)
-      const errorMessage = 'Error al cargar los clubes'
-      setError(errorMessage)
-      onError?.(errorMessage)
+      showError('Error al cargar los clubes')
     }
-  }, [onError])
+  }, [showError])
 
   const loadCourts = useCallback(async (clubId: number) => {
     try {
@@ -55,11 +54,9 @@ export const useForm = (onError?: (message: string) => void) => {
       setSchedules([])
     } catch (error) {
       console.error('Error loading courts:', error)
-      const errorMessage = 'Error al cargar las canchas'
-      setError(errorMessage)
-      onError?.(errorMessage)
+      showError('Error al cargar las canchas')
     }
-  }, [onError])
+  }, [showError])
 
   const loadSchedules = useCallback(async (courtId: number) => {
     try {
@@ -74,11 +71,9 @@ export const useForm = (onError?: (message: string) => void) => {
       }))
     } catch (error) {
       console.error('Error loading schedules:', error)
-      const errorMessage = 'Error al cargar los horarios'
-      setError(errorMessage)
-      onError?.(errorMessage)
+      showError('Error al cargar los horarios')
     }
-  }, [onError])
+  }, [showError])
 
   const loadAvailableSlots = useCallback(async (courtId: number, date: string) => {
     try {
@@ -96,11 +91,9 @@ export const useForm = (onError?: (message: string) => void) => {
       }))
     } catch (error) {
       console.error('Error loading available slots:', error)
-      const errorMessage = 'Error al cargar los horarios disponibles'
-      setError(errorMessage)
-      onError?.(errorMessage)
+      showError('Error al cargar los horarios disponibles')
     }
-  }, [onError])
+  }, [showError])
 
   const handleClubChange = useCallback((clubId: number) => {
     setFormData(prev => ({ ...prev, clubId }))
@@ -154,7 +147,6 @@ export const useForm = (onError?: (message: string) => void) => {
   return {
     // Estado
     activeStep,
-    error,
     formData,
     clubs,
     courts,

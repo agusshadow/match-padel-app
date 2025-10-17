@@ -1,26 +1,25 @@
 import { useState, useCallback } from 'react'
 import { getAvailableSlotsByCourtAndDay } from '../api'
 import { CourtSchedule } from '../../../../types'
+import { useToast } from '../../../../shared/hooks/useToast'
 
 export const useSlots = () => {
   const [schedules, setSchedules] = useState<CourtSchedule[]>([])
-  const [error, setError] = useState<string | null>(null)
+  const { showError } = useToast()
 
   const loadAvailableSlots = useCallback(async (courtId: number, dayOfWeek: number) => {
     try {
-      setError(null)
       const slotsData = await getAvailableSlotsByCourtAndDay(courtId, dayOfWeek)
       setSchedules(slotsData)
     } catch (error) {
       console.error('Error loading available slots:', error)
-      setError('Error al cargar los horarios disponibles')
+      showError('Error al cargar los horarios disponibles')
       throw error
     }
-  }, [])
+  }, [showError])
 
   return {
     schedules,
-    error,
     loadAvailableSlots
   }
 }

@@ -4,8 +4,6 @@ import {
   Text,
   Card,
   CardBody,
-  Alert,
-  AlertIcon,
   VStack,
   Heading,
   Grid,
@@ -18,23 +16,8 @@ import MatchCard from './components/MatchCard'
 const Matches = (): JSX.Element => {
   const navigate = useNavigate()
   const {
-    availableMatches,
-    error
+    availableMatches
   } = useMatches()
-
-  if (error) {
-    return (
-      <VStack spacing={8} align="center" py={20}>
-        <Alert status="error" maxW="md">
-          <AlertIcon />
-          {error}
-        </Alert>
-        <Button colorScheme="brand" onClick={() => window.location.reload()}>
-          Reintentar
-        </Button>
-      </VStack>
-    )
-  }
 
   return (
     <VStack spacing={8} align="stretch" p={6}>
