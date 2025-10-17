@@ -2,8 +2,8 @@ import api from '../../config'
 import { Match, CreateMatchData } from '../../../types'
 
 // Obtener todos los partidos
-export const getMatches = async (): Promise<Match[]> => {
-  const response = await api.get('/matches/detailed')
+export const getMatches = async (params?: { status?: string }): Promise<Match[]> => {
+  const response = await api.get('/matches/detailed', { params })
   console.log('API Response for matches:', response.data) // Debug log
   // Manejar el formato específico de la API: { success: true, data: [...], count: 1 }
   if (response.data && response.data.success && response.data.data && Array.isArray(response.data.data)) {

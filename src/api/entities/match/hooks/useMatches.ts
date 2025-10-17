@@ -12,7 +12,7 @@ export const useMatches = () => {
 
   const loadMatches = async () => {
     try {
-      const matchesData = await getMatches()
+      const matchesData = await getMatches({ status: 'available' })
       setMatches(Array.isArray(matchesData) ? matchesData : [])
     } catch (error) {
       console.error('Error loading matches:', error)
