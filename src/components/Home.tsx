@@ -20,10 +20,20 @@ import {
   FaBullseye, 
   FaBolt 
 } from 'react-icons/fa'
+import { useNavigate } from 'react-router-dom'
 // import { useAuth } from '../context/AuthContext' // Comentado porque el header de bienvenida está deshabilitado
 
 const Home = (): JSX.Element => {
   // const { user } = useAuth() // Comentado porque el header de bienvenida está deshabilitado
+  const navigate = useNavigate()
+
+  const handleCreateMatch = () => {
+    navigate('/app/matches/create')
+  }
+
+  const handleSearchMatches = () => {
+    navigate('/app/matches')
+  }
 
   return (
     <VStack spacing={8} align="stretch">
@@ -72,7 +82,13 @@ const Home = (): JSX.Element => {
                   <Text fontSize="sm" color="gray.600" mb={4} flex="1">
                     Organiza un nuevo partido y encuentra jugadores
                   </Text>
-                  <Button colorScheme="brand" size="lg" w="full" mt="auto">
+                  <Button 
+                    colorScheme="brand" 
+                    size="lg" 
+                    w="full" 
+                    mt="auto"
+                    onClick={handleCreateMatch}
+                  >
                     Crear Ahora
                   </Button>
                 </CardBody>
@@ -107,7 +123,13 @@ const Home = (): JSX.Element => {
                   <Text fontSize="sm" color="gray.600" mb={4} flex="1">
                     Busca partidos disponibles y únete
                   </Text>
-                  <Button colorScheme="brand" size="lg" w="full" mt="auto">
+                  <Button 
+                    colorScheme="brand" 
+                    size="lg" 
+                    w="full" 
+                    mt="auto"
+                    onClick={handleSearchMatches}
+                  >
                     Buscar Partidos
                   </Button>
                 </CardBody>
